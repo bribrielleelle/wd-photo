@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Photo Gallery</title>
-    <meta name="description" content="A 9-photo grid displaying 3 rows and 3 columns of equal-dimension photos with titles" />
-    <meta property="og:title" content="Photo Gallery" />
-    <meta property="og:description" content="A 9-photo grid displaying 3 rows and 3 columns of equal-dimension photos with titles" />
+    <title>Photo Gallery - Brielle Davis</title>
+    <meta name="description" content="A cotton candy themed 9-photo gallery celebrating Brielle Davis with a pastel 3x3 photo grid" />
+    <meta property="og:title" content="Photo Gallery - Brielle Davis" />
+    <meta property="og:description" content="A cotton candy themed 9-photo gallery celebrating Brielle Davis with a pastel 3x3 photo grid" />
     <style>
       * {
         box-sizing: border-box;
@@ -15,28 +15,55 @@
       }
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background-color: #fafaf9;
-        color: #1c1917;
+        background: linear-gradient(135deg, #fff1f5 0%, #f0f9ff 50%, #faf5ff 100%);
+        min-height: 100vh;
+        color: #374151;
       }
       .gallery-container {
         max-width: 900px;
         margin: 0 auto;
         padding: 2.5rem 1rem;
       }
-      .gallery-header {
+      .profile-banner {
         text-align: center;
         margin-bottom: 2rem;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid #fbcfe8;
+        border-radius: 1.25rem;
+        padding: 1.5rem 1rem;
+        box-shadow: 0 4px 20px -2px rgba(244, 114, 182, 0.12);
       }
-      .gallery-title {
-        font-size: 1.875rem;
+      .theme-pill {
+        display: inline-block;
+        font-size: 0.75rem;
         font-weight: 700;
-        letter-spacing: -0.025em;
-        color: #1c1917;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #ec4899;
+        background: #fdf2f8;
+        padding: 0.25rem 0.875rem;
+        border-radius: 9999px;
+        border: 1px solid #fbcfe8;
+        margin-bottom: 0.5rem;
       }
-      .gallery-subtitle {
+      .user-name {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+      .birthday-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         font-size: 0.875rem;
-        color: #78716c;
-        margin-top: 0.5rem;
+        font-weight: 600;
+        color: #0284c7;
+        background: #e0f2fe;
+        padding: 0.375rem 1rem;
+        border-radius: 9999px;
+        border: 1px solid #bae6fd;
       }
       .photo-grid {
         display: grid;
@@ -46,22 +73,24 @@
       }
       .photo-card {
         background-color: #ffffff;
-        border-radius: 0.75rem;
+        border-radius: 0.875rem;
         overflow: hidden;
-        border: 1px solid #e7e5e4;
+        border: 1px solid #fce7f3;
         display: flex;
         flex-direction: column;
+        box-shadow: 0 4px 12px -2px rgba(244, 114, 182, 0.08);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
       .photo-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px -4px rgba(244, 114, 182, 0.18);
+        border-color: #f472b6;
       }
       .image-wrapper {
         width: 100%;
         aspect-ratio: 1 / 1;
         overflow: hidden;
-        background-color: #f5f5f4;
+        background: linear-gradient(135deg, #fdf2f8, #e0f2fe);
       }
       .photo-img {
         width: 100%;
@@ -70,26 +99,30 @@
         display: block;
       }
       .photo-info {
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 0.875rem;
         text-align: center;
+        background: #ffffff;
       }
       .photo-title {
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
         font-weight: 600;
-        color: #292524;
+        color: #374151;
       }
       @media (max-width: 640px) {
         .gallery-container {
-          padding: 1.5rem 0.75rem;
+          padding: 1.25rem 0.75rem;
+        }
+        .user-name {
+          font-size: 1.5rem;
         }
         .photo-grid {
-          gap: 0.75rem;
+          gap: 0.625rem;
         }
         .photo-info {
-          padding: 0.5rem;
+          padding: 0.5rem 0.25rem;
         }
         .photo-title {
-          font-size: 0.8125rem;
+          font-size: 0.75rem;
         }
       }
     </style>
@@ -97,9 +130,12 @@
   <body>
     <div id="root">
       <main class="gallery-container">
-        <header class="gallery-header">
-          <h1 class="gallery-title">Photo Gallery</h1>
-          <p class="gallery-subtitle">A 9-photo showcase arranged in 3 rows and 3 columns</p>
+        <header class="profile-banner">
+          <span class="theme-pill">Cotton Candy Edition</span>
+          <h1 class="user-name">BRIELLE DAVIS</h1>
+          <div>
+            <span class="birthday-badge">🎂 Birthday: 10-18-2011</span>
+          </div>
         </header>
 
         <section class="photo-grid" id="photo-grid">
@@ -107,45 +143,45 @@
           <article class="photo-card" id="photo-card-1">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Alpine Sunrise"
+                src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Cotton Candy Clouds"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Alpine Sunrise</h2>
+              <h2 class="photo-title">Cotton Candy Clouds</h2>
             </div>
           </article>
 
           <article class="photo-card" id="photo-card-2">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Coastal Waves"
+                src="https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Spun Sugar Cone"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Coastal Waves</h2>
+              <h2 class="photo-title">Spun Sugar Cone</h2>
             </div>
           </article>
 
           <article class="photo-card" id="photo-card-3">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Misty Forest"
+                src="https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Pastel Ferris Wheel"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Misty Forest</h2>
+              <h2 class="photo-title">Pastel Ferris Wheel</h2>
             </div>
           </article>
 
@@ -153,45 +189,45 @@
           <article class="photo-card" id="photo-card-4">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Desert Dunes"
+                src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Berry Macarons"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Desert Dunes</h2>
+              <h2 class="photo-title">Berry Macarons</h2>
             </div>
           </article>
 
           <article class="photo-card" id="photo-card-5">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Modern Facade"
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Pink Shoreline"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Modern Facade</h2>
+              <h2 class="photo-title">Pink Shoreline</h2>
             </div>
           </article>
 
           <article class="photo-card" id="photo-card-6">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Golden Valley"
+                src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Marshmallow Dream"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Golden Valley</h2>
+              <h2 class="photo-title">Marshmallow Dream</h2>
             </div>
           </article>
 
@@ -199,45 +235,45 @@
           <article class="photo-card" id="photo-card-7">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Sunlit Canopy"
+                src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Lavender Twilight"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Sunlit Canopy</h2>
+              <h2 class="photo-title">Lavender Twilight</h2>
             </div>
           </article>
 
           <article class="photo-card" id="photo-card-8">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Mountain Peaks"
+                src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Sweet Sparkles"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Mountain Peaks</h2>
+              <h2 class="photo-title">Sweet Sparkles</h2>
             </div>
           </article>
 
           <article class="photo-card" id="photo-card-9">
             <div class="image-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1439853941329-a99ce049f002?auto=format&fit=crop&w=600&h=600&q=80"
-                alt="Tranquil Lake"
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Pastel Horizon"
                 class="photo-img"
                 loading="lazy"
                 referrerpolicy="no-referrer"
               />
             </div>
             <div class="photo-info">
-              <h2 class="photo-title">Tranquil Lake</h2>
+              <h2 class="photo-title">Pastel Horizon</h2>
             </div>
           </article>
         </section>

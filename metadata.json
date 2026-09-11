@@ -1,6 +1,6 @@
 {
   "name": "Photo Gallery",
-  "description": "A 9-photo grid displaying 3 rows and 3 columns of equal-dimension photos with titles",
+  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with a pastel 3x3 photo grid",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
