@@ -1,6 +1,6 @@
 {
-  "name": "App",
-  "description": "Blank starter application",
+  "name": "Photo Gallery",
+  "description": "A 9-photo grid displaying 3 rows and 3 columns of equal-dimension photos with titles",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

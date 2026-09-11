@@ -3,11 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App</title>
-    <meta name="description" content="Blank starter application" />
+    <title>Photo Gallery</title>
+    <meta name="description" content="A 9-photo grid displaying 3 rows and 3 columns of equal-dimension photos with titles" />
+    <meta property="og:title" content="Photo Gallery" />
+    <meta property="og:description" content="A 9-photo grid displaying 3 rows and 3 columns of equal-dimension photos with titles" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #fafaf9;
+        color: #1c1917;
+      }
+      .gallery-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2.5rem 1rem;
+      }
+      .gallery-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .gallery-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: #1c1917;
+      }
+      .gallery-subtitle {
+        font-size: 0.875rem;
+        color: #78716c;
+        margin-top: 0.5rem;
+      }
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      .photo-card {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        border: 1px solid #e7e5e4;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .photo-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      }
+      .image-wrapper {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background-color: #f5f5f4;
+      }
+      .photo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .photo-info {
+        padding: 0.75rem 1rem;
+        text-align: center;
+      }
+      .photo-title {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: #292524;
+      }
+      @media (max-width: 640px) {
+        .gallery-container {
+          padding: 1.5rem 0.75rem;
+        }
+        .photo-grid {
+          gap: 0.75rem;
+        }
+        .photo-info {
+          padding: 0.5rem;
+        }
+        .photo-title {
+          font-size: 0.8125rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="gallery-container">
+        <header class="gallery-header">
+          <h1 class="gallery-title">Photo Gallery</h1>
+          <p class="gallery-subtitle">A 9-photo showcase arranged in 3 rows and 3 columns</p>
+        </header>
+
+        <section class="photo-grid" id="photo-grid">
+          <!-- Row 1 -->
+          <article class="photo-card" id="photo-card-1">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Alpine Sunrise"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Alpine Sunrise</h2>
+            </div>
+          </article>
+
+          <article class="photo-card" id="photo-card-2">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Coastal Waves"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Coastal Waves</h2>
+            </div>
+          </article>
+
+          <article class="photo-card" id="photo-card-3">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Misty Forest"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Misty Forest</h2>
+            </div>
+          </article>
+
+          <!-- Row 2 -->
+          <article class="photo-card" id="photo-card-4">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Desert Dunes"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Desert Dunes</h2>
+            </div>
+          </article>
+
+          <article class="photo-card" id="photo-card-5">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Modern Facade"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Modern Facade</h2>
+            </div>
+          </article>
+
+          <article class="photo-card" id="photo-card-6">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Golden Valley"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Golden Valley</h2>
+            </div>
+          </article>
+
+          <!-- Row 3 -->
+          <article class="photo-card" id="photo-card-7">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Sunlit Canopy"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Sunlit Canopy</h2>
+            </div>
+          </article>
+
+          <article class="photo-card" id="photo-card-8">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Mountain Peaks"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Mountain Peaks</h2>
+            </div>
+          </article>
+
+          <article class="photo-card" id="photo-card-9">
+            <div class="image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1439853941329-a99ce049f002?auto=format&fit=crop&w=600&h=600&q=80"
+                alt="Tranquil Lake"
+                class="photo-img"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="photo-info">
+              <h2 class="photo-title">Tranquil Lake</h2>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
