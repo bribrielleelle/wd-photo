@@ -69,9 +69,9 @@ export default function App() {
   return (
     <main
       id="app-container"
-      className="min-h-screen bg-gradient-to-br from-pink-50 via-sky-50 to-purple-50 text-stone-700 p-4 sm:p-8 font-sans"
+      className="flex min-h-screen w-full flex-col items-center bg-gradient-to-br from-pink-50 via-sky-50 to-purple-50 text-stone-700 p-4 sm:p-8 font-sans"
     >
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="w-full max-w-4xl mx-auto space-y-6">
         {/* Cotton Candy Profile Header */}
         <header
           id="profile-banner"
