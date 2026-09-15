@@ -9,8 +9,7 @@ export default defineConfig({
   ],
   server: {
     host: '0.0.0.0',
-    port: 5000,
+    port: process.env.PORT ? parseInt(process.env.PORT, 10) : (process.env.REPL_ID ? 5000 : 3000),
     allowedHosts: true,
-    strictPort: true,
   },
 });

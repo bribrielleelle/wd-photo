@@ -11,21 +11,21 @@ interface PhotoItem {
 const COTTON_CANDY_PHOTOS: PhotoItem[] = [
   {
     id: 1,
-    title: 'Cotton Candy Clouds',
-    imageUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&h=600&q=80',
-    alt: 'Cotton Candy Clouds',
+    title: 'Cotton Candy',
+    imageUrl: 'https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=600&h=600&q=80',
+    alt: 'Cotton Candy',
   },
   {
     id: 2,
-    title: 'Spun Sugar Cone',
-    imageUrl: 'https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=600&h=600&q=80',
-    alt: 'Spun Sugar Cone',
+    title: "Thrifty's Cotton Candy Ice Cream",
+    imageUrl: '/thrifty-cotton-candy.jpg',
+    alt: "Thrifty's Cotton Candy Ice Cream",
   },
   {
     id: 3,
-    title: 'Pastel Ferris Wheel',
-    imageUrl: 'https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?auto=format&fit=crop&w=600&h=600&q=80',
-    alt: 'Pastel Ferris Wheel',
+    title: 'Cotton Candy Lollipops',
+    imageUrl: 'https://images.unsplash.com/photo-1514517521153-1be72277b32f?auto=format&fit=crop&w=600&h=600&q=80',
+    alt: 'Cotton Candy Lollipops',
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ export default function App() {
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100/90 text-pink-700 text-xs font-semibold uppercase tracking-wider border border-pink-200">
             <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-            <span>Cotton Candy Edition</span>
+            <span>Sweet Edition</span>
             <Heart className="w-3.5 h-3.5 text-pink-500 fill-pink-400" />
           </div>
 
