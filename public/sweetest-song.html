@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweetest Song - Bath &amp; Body Works</title>
+  <style>
+    /* CSS Reset & Universal Box Sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Page Theme & Backdrop */
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 40%, #fae8ff 100%);
+      color: #374151;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+
+    /* Main Container Card */
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 28px;
+      padding: 40px 32px;
+      box-shadow: 0 16px 36px -8px rgba(236, 72, 153, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
+      text-align: center;
+    }
+
+    /* Brand Eyebrow Tag */
+    .brand-eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #db2777;
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    /* 1. Centered Title with Perfume's Name */
+    .perfume-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .family-subtitle {
+      font-size: 1rem;
+      color: #9d174d;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    /* 2. Image of the Perfume Bottle */
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 28px auto;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+      box-shadow: 0 12px 28px -6px rgba(219, 39, 119, 0.18);
+      border: 2px solid #fdf2f8;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .image-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px -6px rgba(219, 39, 119, 0.25);
+    }
+
+    .perfume-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .image-container:hover .perfume-image {
+      transform: scale(1.03);
+    }
+
+    /* 3. Full Sensory-Rich Description */
+    .description-card {
+      background: #fff5f7;
+      border: 1px solid #fce7f3;
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .story-text {
+      font-size: 1.05rem;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #fbcfe8;
+      font-size: 0.88rem;
+    }
+
+    .detail-item {
+      color: #4b5563;
+    }
+
+    .detail-item strong {
+      color: #9d174d;
+    }
+
+    /* 4. Fragrance Notes Breakdown */
+    .notes-section {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .section-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 14px;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .note-card {
+      background: #ffffff;
+      border: 1px solid #fbcfe8;
+      border-radius: 16px;
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .note-card:hover {
+      transform: translateY(-2px);
+      border-color: #f472b6;
+    }
+
+    .note-level {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #db2777;
+      margin-bottom: 6px;
+    }
+
+    .note-ingredients {
+      font-size: 0.85rem;
+      color: #4b5563;
+      line-height: 1.45;
+    }
+
+    /* 5. Highlighted Price Section */
+    .price-box {
+      margin-bottom: 24px;
+      padding: 16px;
+      background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%);
+      border: 2px solid #fbcfe8;
+      border-radius: 18px;
+      display: inline-block;
+      min-width: 260px;
+    }
+
+    .price-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #9d174d;
+      margin-bottom: 4px;
+    }
+
+    .price-value {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #db2777;
+      letter-spacing: -0.02em;
+    }
+
+    .price-details {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    /* 6. Action Buttons ("Buy Now" & "Back to Gallery") */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-buy {
+      background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+      border: none;
+    }
+
+    .btn-buy:hover {
+      background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(236, 72, 153, 0.4);
+    }
+
+    .btn-back {
+      background: #ffffff;
+      color: #4b5563;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-back:hover {
+      background: #fdf2f8;
+      color: #db2777;
+      border-color: #fbcfe8;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design for Mobile Devices */
+    @media (max-width: 640px) {
+      .container {
+        padding: 24px 16px;
+        border-radius: 20px;
+      }
+      .perfume-title {
+        font-size: 1.75rem;
+      }
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+      .btn {
+        width: 100%;
+      }
+      .price-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Brand Tag -->
+    <span class="brand-eyebrow">Bath &amp; Body Works • Fine Fragrance Mist</span>
+
+    <!-- 1. Centered Title with Perfume Name -->
+    <h1 class="perfume-title">Sweetest Song</h1>
+    <p class="family-subtitle">Fragrance Family: Fruity Floral Gourmand / Sweet Berry Petals</p>
+
+    <!-- 2. Image of the Perfume Bottle -->
+    <div class="image-container">
+      <img
+        src="perfume-image.jpg"
+        alt="Sweetest Song Fine Fragrance Mist Bottle"
+        class="perfume-image"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='/sweetest-song.jpg';"
+      />
+    </div>
+
+    <!-- 3. Full Sensory-Rich Description -->
+    <section class="description-card">
+      <p class="story-text">
+        <strong>The Inspiration &amp; Story:</strong> Sweetest Song is a joyful, melodic anthem of sweet springtime romance and carefree laughter. Designed to evoke the feeling of playing your favorite uplifting melody on repeat under blossoming trees, it opens with a sparkling chorus of sugar-dusted wild raspberries and ruby red currant, cascading effortlessly into an enchanting harmony of candied rose petals and dewy magnolia, before settling into a soft, cozy refrain of warm spun amber sugar and whipped marshmallow musk.
+      </p>
+      
+      <div class="details-grid">
+        <div class="detail-item">
+          <strong>Longevity:</strong> 5–7 Hours (All-day layering)
+        </div>
+        <div class="detail-item">
+          <strong>Sillage:</strong> Airy, Uplifting &amp; Sweet
+        </div>
+        <div class="detail-item">
+          <strong>Ideal Occasions:</strong> Sunlit picnics, casual dates, cheerful mornings &amp; daily pick-me-up
+        </div>
+        <div class="detail-item">
+          <strong>Character:</strong> Radiant, uplifting, sweet &amp; romantic
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Fragrance Notes Breakdown -->
+    <section class="notes-section">
+      <h2 class="section-heading">Fragrance Notes Architecture</h2>
+      <div class="notes-grid">
+        <div class="note-card">
+          <div class="note-level">Top Notes</div>
+          <p class="note-ingredients">Sugar-Dusted Raspberries, Ruby Red Currant &amp; Sparkling Pink Mandarin</p>
+        </div>
+        <div class="note-card">
+          <div class="note-level">Heart Notes</div>
+          <p class="note-ingredients">Candied Rose Petals, Sweet Pink Blossom &amp; Dewy Magnolia</p>
+        </div>
+        <div class="note-card">
+          <div class="note-level">Base Notes</div>
+          <p class="note-ingredients">Spun Amber Sugar, Whipped Marshmallow &amp; Soft Cashmeran Musk</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Highlighted Price Section -->
+    <div class="price-box">
+      <div class="price-label">Signature Fragrance Price</div>
+      <div class="price-value"><strong>$18.95</strong></div>
+      <div class="price-details">8 fl oz / 236 ml Fine Fragrance Mist</div>
+    </div>
+
+    <!-- 6. Action Buttons with Buy Now Link -->
+    <div class="actions">
+      <a href="/" class="btn btn-back">
+        &larr; Back to Gallery
+      </a>
+      <a
+        href="https://www.bathandbodyworks.com/p/sweetest-song-fine-fragrance-mist-028011402?srsltid=AU7gw4VMgHhzrVr5Tiwhg0ZazVZfZ3Qll-EZYz_O-QQIFhErVHKeUJwO"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-buy"
+      >
+        <span>Buy Now</span>
+        <span>&nearr;</span>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

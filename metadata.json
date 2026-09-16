@@ -1,6 +1,6 @@
 {
   "name": "Photo Gallery",
-  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with a pastel 3x3 photo grid",
+  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with password entry protection and a pastel 3x3 photo grid",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

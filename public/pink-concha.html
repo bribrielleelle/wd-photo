@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pink Concha - Sweet Bakery Blog</title>
+  <style>
+    /* CSS Reset & Box Sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Page Theme & Background */
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #e9d5ff 0%, #f5d0fe 35%, #fbcfe8 70%, #fce7f3 100%);
+      color: #44403c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+
+    /* Main Container Card */
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      padding: 36px 28px;
+      box-shadow: 0 12px 30px -5px rgba(219, 39, 119, 0.12), 0 8px 12px -6px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    /* 1. Centered Title Above the Image */
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: #fdf2f8;
+      color: #db2777;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      border: 1px solid #fce7f3;
+    }
+
+    .title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #1c1917;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+
+    /* 2. Properly Sized and Responsive Image */
+    .image-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fdf2f8;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #fce7f3;
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .image-wrapper img:hover {
+      transform: scale(1.02);
+    }
+
+    /* 3. Short Description or Caption Below the Image */
+    .caption {
+      font-size: 1.05rem;
+      color: #57534e;
+      max-width: 540px;
+      margin: 0 auto 32px auto;
+    }
+
+    /* 4. Option to Generate Any Pink Sweet Recipes */
+    .recipe-generator-section {
+      text-align: left;
+      border-top: 1px solid #fbcfe8;
+      padding-top: 32px;
+      margin-top: 12px;
+    }
+
+    .generator-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .generator-header h2 {
+      font-size: 1.5rem;
+      color: #1c1917;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .generator-header p {
+      font-size: 0.9rem;
+      color: #78716c;
+    }
+
+    .generator-controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .generator-input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #fbcfe8;
+      background: #fdf2f8;
+      font-size: 0.95rem;
+      color: #1c1917;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .generator-input:focus {
+      background: #ffffff;
+      border-color: #ec4899;
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+    }
+
+    .generate-btn {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .generate-btn:hover {
+      background: linear-gradient(135deg, #db2777 0%, #c026d3 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    }
+
+    /* Preset suggestions */
+    .presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .preset-chip {
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid #fce7f3;
+      font-size: 0.8rem;
+      color: #701a75;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .preset-chip:hover {
+      background: #fdf2f8;
+      border-color: #f472b6;
+      color: #db2777;
+    }
+
+    /* Recipe Output Card */
+    .recipe-card {
+      background: #fff5f7;
+      border: 1px solid #fbcfe8;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .recipe-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #831843;
+      margin-bottom: 6px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #be185d;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #fbcfe8;
+    }
+
+    .recipe-desc {
+      font-size: 0.95rem;
+      color: #57534e;
+      margin-bottom: 18px;
+    }
+
+    .recipe-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #9d174d;
+      margin: 16px 0 8px 0;
+    }
+
+    .recipe-ingredients, .recipe-instructions {
+      padding-left: 20px;
+      font-size: 0.9rem;
+      color: #44403c;
+    }
+
+    .recipe-ingredients li, .recipe-instructions li {
+      margin-bottom: 6px;
+    }
+
+    .recipe-tip {
+      margin-top: 18px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #fce7f3;
+      border: 1px solid #fbcfe8;
+      font-size: 0.85rem;
+      color: #831843;
+    }
+
+    /* 5. Back to Homepage Button */
+    .back-nav {
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid #fce7f3;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+      background: linear-gradient(135deg, #db2777 0%, #c026d3 100%);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .container {
+        padding: 24px 16px;
+        border-radius: 20px;
+      }
+      .title {
+        font-size: 1.75rem;
+      }
+      .generator-controls {
+        flex-direction: column;
+      }
+      .generate-btn {
+        width: 100%;
+      }
+      .back-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- 1. Centered Title Above the Image -->
+    <span class="badge">Artisan Pan Dulce</span>
+    <h1 class="title">Pink Concha</h1>
+
+    <!-- 2. Responsive Image (Assumes example-image.jpg or concha image) -->
+    <div class="image-wrapper">
+      <img
+        id="concha-img"
+        src="example-image.jpg"
+        alt="Pink Concha"
+        onerror="this.onerror=null; this.src='/yummy-conchas.jpg';"
+      />
+    </div>
+
+    <!-- 3. Short Description or Caption Below the Image -->
+    <p class="caption">
+      A tender, pillowy brioche roll crowned with a crumbly, seashell-patterned pink sugar crust baked to sweet morning perfection.
+    </p>
+
+    <!-- 4. Option to Generate Any Pink Sweet Recipes -->
+    <section class="recipe-generator-section">
+      <div class="generator-header">
+        <h2>✨ Pink Sweet Recipe Generator</h2>
+        <p>Type any pink sweet craving or pick a suggestion to generate a complete recipe!</p>
+      </div>
+
+      <div class="generator-controls">
+        <input
+          type="text"
+          id="recipe-input"
+          class="generator-input"
+          placeholder="e.g., Strawberry Concha, Pink Velvet Cupcake, Rose Donut..."
+        />
+        <button id="generate-btn" class="generate-btn" type="button">
+          Generate Recipe
+        </button>
+      </div>
+
+      <!-- Quick Preset Suggestions -->
+      <div class="presets">
+        <button type="button" class="preset-chip" data-title="Pink Strawberry Conchas">🍓 Pink Conchas</button>
+        <button type="button" class="preset-chip" data-title="Pink Velvet Cloud Cupcakes">🧁 Pink Velvet Cupcakes</button>
+        <button type="button" class="preset-chip" data-title="Rosewater Glazed Donuts">🍩 Rose Glazed Donuts</button>
+        <button type="button" class="preset-chip" data-title="Raspberry Marshmallow Fluff">🍧 Raspberry Mousse</button>
+        <button type="button" class="preset-chip" data-title="Pink Cotton Candy Cookies">✨ Cotton Candy Cookies</button>
+      </div>
+
+      <!-- Recipe Output Container -->
+      <div id="recipe-output" class="recipe-card">
+        <h3 class="recipe-title" id="out-title">Classic Pink Strawberry Conchas</h3>
+        <div class="recipe-meta" id="out-meta">
+          <span>⏱ Prep: 2 hrs 30 mins</span>
+          <span>🔥 Bake: 20 mins</span>
+          <span>🍽 Yield: 10 conchas</span>
+          <span>✨ Level: Medium</span>
+        </div>
+        <p class="recipe-desc" id="out-desc">
+          Ultra-soft, sweet yeast brioche buns crowned with the traditional shell-scored pink vanilla-strawberry sugar crust.
+        </p>
+
+        <h4 class="recipe-section-title">Ingredients:</h4>
+        <ul class="recipe-ingredients" id="out-ingredients">
+          <li>3 1/2 cups (440g) all-purpose flour</li>
+          <li>1 packet (7g) active dry yeast & 1/2 cup warm milk</li>
+          <li>1/3 cup sugar, 3 large eggs, 1/2 cup softened butter</li>
+          <li>Pink Crust: 3/4 cup powdered sugar, 3/4 cup flour, 1/2 cup shortening</li>
+          <li>2 tbsp freeze-dried strawberry powder (or 2 drops pink gel)</li>
+        </ul>
+
+        <h4 class="recipe-section-title">Baking Instructions:</h4>
+        <ol class="recipe-instructions" id="out-instructions">
+          <li>Bloom yeast in warm milk with 1 tbsp sugar for 8 minutes until foamy.</li>
+          <li>Knead flour, eggs, sugar, butter, and yeast until smooth and elastic (8 mins). Let rise 2 hours.</li>
+          <li>Cream shortening, powdered sugar, flour, and pink strawberry powder to form crust paste. Divide into 10 disks.</li>
+          <li>Shape dough into 10 balls, top each with a flattened pink crust disk, and score shell lines with a paring knife.</li>
+          <li>Rise 45 minutes, then bake at 350°F (175°C) for 18–20 minutes until golden.</li>
+        </ol>
+
+        <div class="recipe-tip" id="out-tip">
+          💡 <strong>Pink Secret Tip:</strong> Use powdered freeze-dried strawberries in the crust paste! It adds bright berry flavor and an authentic blush pink color without thinning the topping dough.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Navigation Back to Homepage -->
+    <div class="back-nav">
+      <a href="/" class="back-btn">
+        &larr; Back to Gallery
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // Database of recipes & dynamic generator logic
+    const RECIPES_DB = {
+      "Pink Strawberry Conchas": {
+        title: "Artisan Pink Strawberry Conchas",
+        meta: "⏱ Prep: 2 hrs 30 mins | 🔥 Bake: 20 mins | 🍽 Yield: 10 conchas | ✨ Level: Medium",
+        desc: "Ultra-soft, sweet yeast brioche buns crowned with the traditional shell-scored pink vanilla-strawberry sugar crust.",
+        ingredients: [
+          "3 1/2 cups (440g) all-purpose flour",
+          "1 packet (7g) active dry yeast & 1/2 cup warm whole milk",
+          "1/3 cup sugar, 3 large eggs, 1/2 cup softened butter",
+          "1/2 tsp kosher salt & 1 tsp pure vanilla extract",
+          "Crust: 3/4 cup powdered sugar, 3/4 cup flour, 1/2 cup vegetable shortening",
+          "2 tbsp freeze-dried strawberry powder for natural pink hue"
+        ],
+        instructions: [
+          "Bloom yeast in warm milk with 1 tbsp sugar for 8 minutes until foamy.",
+          "Knead flour, eggs, sugar, butter, and yeast until smooth and elastic (8 mins). Let rise 2 hours.",
+          "Cream shortening, powdered sugar, flour, and pink strawberry powder to form crust paste. Divide into 10 disks.",
+          "Shape dough into 10 balls, top each with a flattened pink crust disk, and score shell lines with a paring knife.",
+          "Rise 45 minutes, then bake at 350°F (175°C) for 18–20 minutes until bases are light golden."
+        ],
+        tip: "💡 Pink Secret Tip: Use powdered freeze-dried strawberries in the crust paste for authentic aroma and radiant blush color!"
+      },
+      "Pink Velvet Cloud Cupcakes": {
+        title: "Pink Velvet Cloud Cupcakes",
+        meta: "⏱ Prep: 20 mins | 🔥 Bake: 18 mins | 🍽 Yield: 12 cupcakes | ✨ Level: Easy",
+        desc: "Tender buttermilk cupcakes tinted in delicate blush pink, crowned with whipped strawberry cream cheese frosting.",
+        ingredients: [
+          "1 1/2 cups cake flour & 1 tbsp Dutch cocoa powder",
+          "1 cup sugar, 1/2 cup melted butter, 2 eggs, 3/4 cup buttermilk",
+          "1 tsp vanilla extract, 1 tsp baking soda, 1 tsp cider vinegar",
+          "Pink gel coloring or 2 tbsp beet juice reduction",
+          "Frosting: 8 oz cream cheese, 1/2 cup butter, 3 cups powdered sugar, strawberry powder"
+        ],
+        instructions: [
+          "Whisk sifted cake flour, cocoa, and salt in a bowl.",
+          "Whisk sugar, butter, eggs, buttermilk, vanilla, and pink hue until blush.",
+          "Fold wet and dry ingredients together with baking soda fizz. Divide into cupcake cups.",
+          "Bake at 350°F (175°C) for 18 minutes until springy.",
+          "Whip frosting ingredients until fluffy and pipe tall pastel rosettes."
+        ],
+        tip: "💡 Pink Secret Tip: A single tablespoon of cocoa deepens the flavor without darkening the pastel pink hue."
+      },
+      "Rosewater Glazed Donuts": {
+        title: "Rosewater & Raspberry Glazed Donuts",
+        meta: "⏱ Prep: 25 mins | 🔥 Bake: 12 mins | 🍽 Yield: 10 donuts | ✨ Level: Easy",
+        desc: "Baked golden vanilla cake donuts dipped in an aromatic botanical rosewater and fresh raspberry glaze.",
+        ingredients: [
+          "2 cups all-purpose flour, 3/4 cup sugar, 2 tsp baking powder",
+          "3/4 cup milk, 2 eggs, 2 tbsp melted butter, 1 tsp vanilla",
+          "Glaze: 1 1/2 cups powdered sugar, 2 tbsp fresh raspberry puree, 1/2 tsp rosewater",
+          "Edible dried rose petals for garnish"
+        ],
+        instructions: [
+          "Whisk dry ingredients; stir in milk, eggs, melted butter, and vanilla until smooth.",
+          "Pipe batter into greased donut pans and bake at 375°F (190°C) for 10–12 minutes.",
+          "Whisk powdered sugar, fresh raspberry puree, and rosewater until glossy pink.",
+          "Dip warm donuts in glaze and sprinkle with rose petals."
+        ],
+        tip: "💡 Pink Secret Tip: Raspberry puree provides both tart fruit flavor and an intense natural pink glaze color."
+      },
+      "Raspberry Marshmallow Fluff": {
+        title: "Pink Cloud Marshmallow Mousse",
+        meta: "⏱ Prep: 20 mins | 🔥 No Bake | 🍽 Yield: 6 parfaits | ✨ Level: Easy",
+        desc: "No-bake whipped marshmallow and fresh raspberry cloud cups topped with crushed ruby meringues.",
+        ingredients: [
+          "7 oz jar marshmallow fluff & 8 oz softened cream cheese",
+          "1 cup heavy whipping cream, whipped to stiff peaks",
+          "1 cup fresh raspberries, strained & mashed",
+          "1 tsp lemon juice & 1 tsp vanilla bean paste"
+        ],
+        instructions: [
+          "Beat marshmallow fluff and cream cheese until smooth and velvety.",
+          "Fold in strained raspberry puree and lemon juice for an even pink hue.",
+          "Fold in whipped cream gently in batches to maintain airiness.",
+          "Pipe into dessert glasses and chill 1 hour before serving."
+        ],
+        tip: "💡 Pink Secret Tip: Straining the raspberry seeds creates a silken smooth texture with soft pink color."
+      },
+      "Pink Cotton Candy Cookies": {
+        title: "Brielle’s Cotton Candy Sugar Cookies",
+        meta: "⏱ Prep: 20 mins | 🔥 Bake: 10 mins | 🍽 Yield: 16 cookies | ✨ Level: Easy",
+        desc: "Melt-in-your-mouth pink sugar cookies swirled with carnival cotton candy essence and sparkling sugar crystal rims.",
+        ingredients: [
+          "2 1/4 cups all-purpose flour, 1/2 tsp baking powder, 1/4 tsp salt",
+          "3/4 cup unsalted butter, 3/4 cup sugar, 1 egg",
+          "1 tsp cotton candy extract & 1/2 tsp vanilla",
+          "Pink sanding sugar crystals for rolling"
+        ],
+        instructions: [
+          "Cream butter and sugar, beat in egg, cotton candy extract, and pink color.",
+          "Incorporate dry ingredients and shape into 1.5-inch balls.",
+          "Roll completely in pink sanding sugar and place on baking sheet.",
+          "Bake at 350°F (175°C) for 10 minutes until edges set."
+        ],
+        tip: "💡 Pink Secret Tip: Roll in coarse sparkling sugar before baking for that signature carnival sparkle!"
+      }
+    };
+
+    function renderRecipe(data) {
+      document.getElementById("out-title").textContent = data.title;
+      document.getElementById("out-meta").textContent = data.meta;
+      document.getElementById("out-desc").textContent = data.desc;
+
+      const ingList = document.getElementById("out-ingredients");
+      ingList.innerHTML = "";
+      data.ingredients.forEach(function(item) {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ingList.appendChild(li);
+      });
+
+      const instList = document.getElementById("out-instructions");
+      instList.innerHTML = "";
+      data.instructions.forEach(function(item) {
+        const li = document.createElement("li");
+        li.textContent = item;
+        instList.appendChild(li);
+      });
+
+      document.getElementById("out-tip").innerHTML = data.tip;
+    }
+
+    function generateCustom(craving) {
+      const name = craving ? (craving.toLowerCase().includes('pink') ? craving : 'Pink ' + craving) : 'Pink Sweet Berry Delight';
+      return {
+        title: name,
+        meta: "⏱ Prep: 25 mins | 🔥 Bake: 18 mins | 🍽 Yield: 8 portions | ✨ Level: Medium",
+        desc: "A custom sweet creation designed to celebrate " + (craving || "pink desserts") + " with delicate fruit sweetness and a blush pastel finish.",
+        ingredients: [
+          "2 cups pastry flour or almond meal base",
+          "3/4 cup superfine sugar & 1/2 cup softened sweet butter",
+          "2 fresh eggs & 1/3 cup reduced strawberry or dragonfruit puree",
+          "1 tsp vanilla bean paste & pinch of pink sea salt",
+          "1/2 cup pink white chocolate chips or pastel sprinkles",
+          "Glaze: 1 cup powdered sugar with 2 tbsp berry reduction"
+        ],
+        instructions: [
+          "Preheat oven to 350°F (175°C) and prepare baking sheet with parchment.",
+          "Whisk dry ingredients in a bowl; cream butter, sugar, eggs, and fruit puree until pastel pink.",
+          "Fold dry and wet together gently, then stir in pink chocolate or berry pieces.",
+          "Portion and bake for 16–18 minutes until lightly set and fragrant.",
+          "Drizzle with berry confectioners glaze and finish with edible pink sprinkles."
+        ],
+        tip: "💡 Pink Secret Tip: Natural dragonfruit powder or reduced berry puree yields the most radiant magenta-to-pink gradient without chemical aftertaste!"
+      };
+    }
+
+    const input = document.getElementById("recipe-input");
+    const btn = document.getElementById("generate-btn");
+
+    btn.addEventListener("click", function() {
+      const val = input.value.trim();
+      if (RECIPES_DB[val]) {
+        renderRecipe(RECIPES_DB[val]);
+      } else {
+        renderRecipe(generateCustom(val));
+      }
+    });
+
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        btn.click();
+      }
+    });
+
+    document.querySelectorAll(".preset-chip").forEach(function(chip) {
+      chip.addEventListener("click", function() {
+        const title = this.getAttribute("data-title");
+        if (RECIPES_DB[title]) {
+          renderRecipe(RECIPES_DB[title]);
+          input.value = title;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pusheen Comics - Image Link</title>
+  <style>
+    /* CSS Reset & Box Sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Page Theme & Background */
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #e9d5ff 0%, #f5d0fe 35%, #fbcfe8 70%, #fce7f3 100%);
+      color: #44403c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+
+    /* Main Container Card */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 28px;
+      padding: 36px 28px;
+      box-shadow: 0 12px 30px -5px rgba(219, 39, 119, 0.12), 0 8px 12px -6px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    /* Category Badge */
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #db2777;
+      background-color: #fce7f3;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      border: 1px solid #fbcfe8;
+    }
+
+    /* 1. Centered Title Above the Image */
+    .title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #1c1917;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #78716c;
+      margin-bottom: 24px;
+    }
+
+    /* 2. Clickable Image Container (Properly Sized & Responsive) */
+    .image-link {
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto 20px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.1);
+      border: 2px solid #fce7f3;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      text-decoration: none;
+      background-color: #fdf2f8;
+    }
+
+    .image-link:hover,
+    .image-link:focus {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 16px 32px -6px rgba(219, 39, 119, 0.25);
+      border-color: #f472b6;
+      outline: none;
+    }
+
+    .responsive-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .image-link:hover .responsive-image {
+      transform: scale(1.03);
+    }
+
+    /* Hover Overlay Hint */
+    .link-hint {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .image-link:hover .link-hint {
+      opacity: 1;
+      transform: scale(1.05);
+      background: #db2777;
+    }
+
+    /* 3. Short Description or Caption Below the Image */
+    .caption {
+      font-size: 1rem;
+      color: #57534e;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 24px auto;
+      text-align: center;
+    }
+
+    .caption a {
+      color: #db2777;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    /* 4. Navigation & Action Buttons */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+      border: none;
+    }
+
+    .primary-btn:hover {
+      background: linear-gradient(135deg, #db2777 0%, #c026d3 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(236, 72, 153, 0.35);
+    }
+
+    .back-btn {
+      background: #ffffff;
+      color: #57534e;
+      border: 1px solid #e7e5e4;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .back-btn:hover {
+      background: #fdf2f8;
+      color: #db2777;
+      border-color: #fbcfe8;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Adjustments for Mobile */
+    @media (max-width: 640px) {
+      .container {
+        padding: 24px 16px;
+        border-radius: 20px;
+      }
+      .title {
+        font-size: 1.75rem;
+      }
+      .caption {
+        font-size: 0.95rem;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Category Badge -->
+    <span class="badge">Webcomics &amp; Fun</span>
+
+    <!-- 1. Centered Title Above the Image -->
+    <h1 class="title">Pusheen Comics</h1>
+    <p class="subtitle">Click the image below to read official comics and stories!</p>
+
+    <!-- 2. The Clickable Image, Properly Sized and Responsive -->
+    <a
+      href="https://pusheen.com/blogs/comics"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="image-link"
+      title="Click to visit Pusheen Comics"
+    >
+      <img
+        id="clickable-comic-img"
+        src="example-image.jpg"
+        alt="Pusheen Comics"
+        class="responsive-image"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='/cool.jpg';"
+      />
+      <span class="link-hint">
+        <span>Read Comics</span> &nearr;
+      </span>
+    </a>
+
+    <!-- 3. Short Description or Caption Below the Image -->
+    <p class="caption">
+      Follow Pusheen, Stormy, and Pip on their sweet daily adventures! Clicking the image takes you directly to the official <a href="https://pusheen.com/blogs/comics" target="_blank" rel="noopener noreferrer">Pusheen Comics Blog</a>.
+    </p>
+
+    <!-- 4. Navigation & Links -->
+    <div class="actions">
+      <a href="/" class="btn back-btn">
+        &larr; Back to Gallery
+      </a>
+      <a
+        href="https://pusheen.com/blogs/comics"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn primary-btn"
+      >
+        <span>Open Pusheen Comics</span>
+        <span>&nearr;</span>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
