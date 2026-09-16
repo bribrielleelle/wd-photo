@@ -6,6 +6,7 @@ import { PusheenComicsBlog } from './components/PusheenComicsBlog';
 import { BurberryHerBlog } from './components/BurberryHerBlog';
 import { MarshmallowBlushBlog } from './components/MarshmallowBlushBlog';
 import { SweetestSongBlog } from './components/SweetestSongBlog';
+import { ConnectWithMeBlog } from './components/ConnectWithMeBlog';
 import { PasswordGate } from './components/PasswordGate';
 
 interface PhotoItem {
@@ -42,9 +43,9 @@ const COTTON_CANDY_PHOTOS: PhotoItem[] = [
   },
   {
     id: 5,
-    title: 'Is',
+    title: 'Connect With Me',
     imageUrl: 'https://pusheen.com/cdn/shop/files/Strawberry_Sponge_Cake_Squisheen_Plush_008_web.jpg?v=1737737676',
-    alt: 'Is',
+    alt: 'Connect With Me',
   },
   {
     id: 6,
@@ -81,10 +82,11 @@ export default function App() {
     }
   });
 
-  const [currentView, setCurrentView] = useState<'gallery' | 'pink-macaron-blog' | 'pink-concha-blog' | 'pusheen-blog' | 'comics-blog' | 'burberry-her-blog' | 'marshmallow-blush-blog' | 'sweetest-song-blog'>(() => {
+  const [currentView, setCurrentView] = useState<'gallery' | 'pink-macaron-blog' | 'pink-concha-blog' | 'pusheen-blog' | 'comics-blog' | 'burberry-her-blog' | 'marshmallow-blush-blog' | 'sweetest-song-blog' | 'connect-with-me-blog'>(() => {
     if (window.location.hash === '#pink-macarons') return 'pink-macaron-blog';
     if (window.location.hash === '#pink-conchas' || window.location.hash === '#yummy') return 'pink-concha-blog';
     if (window.location.hash === '#pusheen') return 'pusheen-blog';
+    if (window.location.hash === '#connect' || window.location.hash === '#connect-with-me' || window.location.hash === '#socials') return 'connect-with-me-blog';
     if (window.location.hash === '#comics' || window.location.hash === '#cool') return 'comics-blog';
     if (window.location.hash === '#burberry-her' || window.location.hash === '#perfume') return 'burberry-her-blog';
     if (window.location.hash === '#marshmallow-blush' || window.location.hash === '#marshmallow') return 'marshmallow-blush-blog';
@@ -100,6 +102,8 @@ export default function App() {
         setCurrentView('pink-concha-blog');
       } else if (window.location.hash === '#pusheen') {
         setCurrentView('pusheen-blog');
+      } else if (window.location.hash === '#connect' || window.location.hash === '#connect-with-me' || window.location.hash === '#socials') {
+        setCurrentView('connect-with-me-blog');
       } else if (window.location.hash === '#comics' || window.location.hash === '#cool') {
         setCurrentView('comics-blog');
       } else if (window.location.hash === '#burberry-her' || window.location.hash === '#perfume') {
@@ -135,6 +139,12 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToConnectBlog = () => {
+    setCurrentView('connect-with-me-blog');
+    window.location.hash = 'connect';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navigateToComicsBlog = () => {
     setCurrentView('comics-blog');
     window.location.hash = 'comics';
@@ -166,6 +176,9 @@ export default function App() {
       window.location.hash === '#pink-conchas' ||
       window.location.hash === '#yummy' ||
       window.location.hash === '#pusheen' ||
+      window.location.hash === '#connect' ||
+      window.location.hash === '#connect-with-me' ||
+      window.location.hash === '#socials' ||
       window.location.hash === '#comics' ||
       window.location.hash === '#cool' ||
       window.location.hash === '#burberry-her' ||
@@ -200,6 +213,10 @@ export default function App() {
 
   if (!isUnlocked) {
     return <PasswordGate onUnlock={handleUnlock} />;
+  }
+
+  if (currentView === 'connect-with-me-blog') {
+    return <ConnectWithMeBlog onBack={navigateToGallery} />;
   }
 
   if (currentView === 'sweetest-song-blog') {
@@ -427,17 +444,20 @@ export default function App() {
             const isMacaron = photo.id === 3;
             const isConcha = photo.id === 1;
             const isPusheen = photo.id === 4;
+            const isConnect = photo.id === 5;
             const isComics = photo.id === 6;
             const isBurberry = photo.id === 7;
             const isMarshmallow = photo.id === 8;
             const isSweetest = photo.id === 9;
-            const isClickable = isMacaron || isConcha || isPusheen || isComics || isBurberry || isMarshmallow || isSweetest;
+            const isClickable = isMacaron || isConcha || isPusheen || isConnect || isComics || isBurberry || isMarshmallow || isSweetest;
             const handleClick = isMacaron
               ? navigateToMacaronBlog
               : isConcha
               ? navigateToConchaBlog
               : isPusheen
               ? navigateToPusheenBlog
+              : isConnect
+              ? navigateToConnectBlog
               : isComics
               ? navigateToComicsBlog
               : isBurberry
@@ -504,7 +524,7 @@ export default function App() {
                       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-pink-700 text-[10px] sm:text-xs font-semibold shadow-xs border border-pink-200">
                         <BookOpen className="w-3 h-3 text-pink-500" />
                         <span className="hidden xs:inline sm:inline">
-                          {isComics ? 'Comics' : (isBurberry || isMarshmallow || isSweetest) ? 'Perfume' : 'Read Blog'}
+                          {isConnect ? 'Socials' : isComics ? 'Comics' : (isBurberry || isMarshmallow || isSweetest) ? 'Perfume' : 'Read Blog'}
                         </span>
                       </span>
                     </div>

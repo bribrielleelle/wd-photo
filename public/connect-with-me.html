@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect With Me - Brielle Davis</title>
+  <style>
+    /* CSS Reset & Universal Box Sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Page Theme & Backdrop */
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(180deg, #fce7f3 0%, #fdf2f8 35%, #fae8ff 70%, #f5f3ff 100%);
+      color: #374151;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+
+    /* Main Container Card */
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 28px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px -10px rgba(236, 72, 153, 0.16), 0 4px 12px rgba(0, 0, 0, 0.04);
+      text-align: center;
+    }
+
+    /* Eyebrow Tag */
+    .brand-eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #db2777;
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    /* 1. Header Section */
+    .header-section {
+      margin-bottom: 32px;
+    }
+
+    .profile-avatar-wrap {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 16px auto;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #f472b6 0%, #c084fc 100%);
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
+    }
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #ffffff;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .bio-tagline {
+      font-size: 1.05rem;
+      color: #6b7280;
+      font-weight: 500;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* 2. Social Media Grid */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 16px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .social-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 12px;
+      background: #ffffff;
+      border: 1.5px solid #fbcfe8;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #374151;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .social-card:hover {
+      transform: translateY(-4px);
+      border-color: #ec4899;
+      box-shadow: 0 10px 20px -4px rgba(236, 72, 153, 0.2);
+      color: #db2777;
+    }
+
+    .social-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      transition: transform 0.25s ease;
+    }
+
+    .social-card:hover .social-icon-box {
+      transform: scale(1.1);
+    }
+
+    .social-icon-box svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 2px;
+    }
+
+    .social-handle {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #9ca3af;
+    }
+
+    .social-card:hover .social-handle {
+      color: #db2777;
+    }
+
+    /* Platform specific themes */
+    .icon-instagram { background: #fdf2f8; color: #e1306c; }
+    .icon-tiktok { background: #f3f4f6; color: #000000; }
+    .icon-youtube { background: #fef2f2; color: #ff0000; }
+    .icon-twitter { background: #f0f9ff; color: #1da1f2; }
+    .icon-pinterest { background: #fef2f2; color: #bd081c; }
+    .icon-spotify { background: #f0fdf4; color: #1db954; }
+
+    /* 3. Leave a Message Form Section */
+    .message-section {
+      background: #fff5f7;
+      border: 1.5px solid #fce7f3;
+      border-radius: 24px;
+      padding: 28px 24px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+
+    .message-header {
+      margin-bottom: 20px;
+    }
+
+    .message-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .message-subheading {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #4b5563;
+      margin-bottom: 6px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #fbcfe8;
+      border-radius: 14px;
+      background: #ffffff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #1f2937;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: #ec4899;
+      box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 20px -4px rgba(236, 72, 153, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -4px rgba(236, 72, 153, 0.45);
+    }
+
+    .success-alert {
+      display: none;
+      background: #ecfdf5;
+      border: 1.5px solid #a7f3d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      text-align: center;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Back Link & Footer */
+    .actions-bar {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: #ffffff;
+      color: #4b5563;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: #fdf2f8;
+      color: #db2777;
+      border-color: #fbcfe8;
+      transform: translateY(-1px);
+    }
+
+    .page-footer {
+      margin-top: 32px;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      border-top: 1px dashed #fbcfe8;
+      padding-top: 20px;
+    }
+
+    .page-footer span {
+      color: #ec4899;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 640px) {
+      .container {
+        padding: 28px 18px;
+        border-radius: 22px;
+      }
+      .page-title {
+        font-size: 1.85rem;
+      }
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- 1. Header Section -->
+    <header class="header-section">
+      <span class="brand-eyebrow">Official Links</span>
+      
+      <div class="profile-avatar-wrap">
+        <img
+          src="https://pusheen.com/cdn/shop/files/Strawberry_Sponge_Cake_Squisheen_Plush_008_web.jpg?v=1737737676"
+          alt="Brielle Davis Avatar"
+          class="profile-avatar"
+        />
+      </div>
+
+      <h1 class="page-title">Connect With Me</h1>
+      <p class="bio-tagline">
+        Welcome to my cozy pastel corner! Explore my work, follow along my adventures, and connect with me.
+      </p>
+    </header>
+
+    <!-- 2. Social Media Links Grid -->
+    <section>
+      <h2 class="section-title">
+        <span>My Socials</span>
+      </h2>
+
+      <div class="social-grid">
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/bribrielleelle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-card"
+          id="social-instagram"
+        >
+          <div class="social-icon-box icon-instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+            </svg>
+          </div>
+          <span class="social-name">Instagram</span>
+          <span class="social-handle">@bribrielleelle</span>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          href="https://www.instagram.com/bribrielleelle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-card"
+          id="social-tiktok"
+        >
+          <div class="social-icon-box icon-tiktok">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.37 6.37 0 0 0-6.62 6.32 6.34 6.34 0 0 0 10.84 4.51c2.1-2.11 2.05-5.5 2.05-5.5v-6.3a8.16 8.16 0 0 0 4.98 1.68V6.69z"/>
+            </svg>
+          </div>
+          <span class="social-name">TikTok</span>
+          <span class="social-handle">@bribrielleelle</span>
+        </a>
+
+        <!-- YouTube -->
+        <a
+          href="https://www.instagram.com/bribrielleelle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-card"
+          id="social-youtube"
+        >
+          <div class="social-icon-box icon-youtube">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <span class="social-name">YouTube</span>
+          <span class="social-handle">@bribrielleelle</span>
+        </a>
+
+        <!-- Twitter / X -->
+        <a
+          href="https://www.instagram.com/bribrielleelle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-card"
+          id="social-twitter"
+        >
+          <div class="social-icon-box icon-twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <span class="social-name">Twitter / X</span>
+          <span class="social-handle">@bribrielleelle</span>
+        </a>
+
+        <!-- Pinterest -->
+        <a
+          href="https://www.instagram.com/bribrielleelle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-card"
+          id="social-pinterest"
+        >
+          <div class="social-icon-box icon-pinterest">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0a12 12 0 0 0-4.37 23.17c-.07-.98-.13-2.5.03-3.57.14-.98.93-6.66.93-6.66s-.24-.48-.24-1.18c0-1.1.64-1.92 1.44-1.92.68 0 1 .51 1 1.12 0 .68-.43 1.7-.66 2.64-.19.79.4 1.44 1.18 1.44 1.42 0 2.51-1.5 2.51-3.66 0-1.91-1.37-3.25-3.34-3.25-2.44 0-3.87 1.83-3.87 3.72 0 .74.28 1.53.64 1.96.07.09.08.16.06.25-.07.28-.22.88-.25.99-.04.16-.13.2-.3.12-1.13-.53-1.84-2.18-1.84-3.51 0-2.86 2.08-5.48 5.99-5.48 3.14 0 5.58 2.24 5.58 5.23 0 3.12-1.97 5.63-4.7 5.63-.92 0-1.78-.48-2.08-1.04l-.57 2.16c-.2 1.02-.75 2.29-1.12 3.09A12 12 0 1 0 12 0z"/>
+            </svg>
+          </div>
+          <span class="social-name">Pinterest</span>
+          <span class="social-handle">@bribrielleelle</span>
+        </a>
+
+        <!-- Spotify -->
+        <a
+          href="https://www.instagram.com/bribrielleelle/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-card"
+          id="social-spotify"
+        >
+          <div class="social-icon-box icon-spotify">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+          </div>
+          <span class="social-name">Spotify</span>
+          <span class="social-handle">@bribrielleelle</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. Leave a Message Section -->
+    <section class="message-section">
+      <div class="message-header">
+        <h2 class="message-heading">Leave a Message</h2>
+        <p class="message-subheading">
+          Have a question or just want to say hi? Leave me a message!
+        </p>
+      </div>
+
+      <form id="contact-form" action="#" method="POST" onsubmit="handleMessageSubmit(event)">
+        <div class="form-group">
+          <label for="user-name-input" class="form-label">Your Name</label>
+          <input
+            type="text"
+            id="user-name-input"
+            name="name"
+            placeholder="What should I call you?"
+            required
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="user-email-input" class="form-label">Your Email</label>
+          <input
+            type="email"
+            id="user-email-input"
+            name="email"
+            placeholder="you@example.com"
+            required
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="user-message-input" class="form-label">Your Message</label>
+          <textarea
+            id="user-message-input"
+            name="message"
+            placeholder="Write your sweet note or question here..."
+            required
+            class="form-textarea"
+          ></textarea>
+        </div>
+
+        <button type="submit" id="send-message-btn" class="btn-submit">
+          <span>Send Message</span>
+          <span>&rarr;</span>
+        </button>
+
+        <div id="form-success-alert" class="success-alert" role="alert">
+          💖 <strong>Thank you!</strong> Your message has been sent successfully. I'll get back to you soon!
+        </div>
+      </form>
+    </section>
+
+    <!-- 4. Navigation Actions -->
+    <div class="actions-bar">
+      <a href="/" class="btn-back">
+        &larr; Back to Gallery
+      </a>
+    </div>
+
+    <!-- 5. Footer Section -->
+    <footer class="page-footer">
+      <p>Thanks for visiting! Crafted with <span>&hearts;</span> for Brielle Davis &bull; &copy; 2026 All Rights Reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    function handleMessageSubmit(event) {
+      event.preventDefault();
+      const form = document.getElementById('contact-form');
+      const alertBox = document.getElementById('form-success-alert');
+      const submitBtn = document.getElementById('send-message-btn');
+
+      // Visual feedback on button
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        alertBox.style.display = 'block';
+        form.reset();
+
+        // Optional friendly alert confirmation
+        console.log('Message sent successfully!');
+      }, 500);
+    }
+  </script>
+</body>
+</html>
