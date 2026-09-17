@@ -198,7 +198,7 @@ export const SweetestSongBlog: React.FC<SweetestSongBlogProps> = ({ onBack }) =>
 
           {/* Sweetest Song Matching Playlist */}
           <div className="text-left pt-2">
-            <SpotifyPlaylistPlaceholder initialPlaylistId="37i9dQZF1DWZqd5JICZI0u" />
+            <SpotifyPlaylistPlaceholder initialPlaylistId="2UUgR8Xd23qIEWtigBUUJg" />
           </div>
 
           {/* 6. Action Buttons with "Buy Now" */}

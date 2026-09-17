@@ -9,6 +9,11 @@ interface SpotifyPlaylistPlaceholderProps {
 
 const PRESET_PLAYLISTS = [
   {
+    id: '2UUgR8Xd23qIEWtigBUUJg',
+    name: 'Brielle’s Gallery Playlist',
+    tag: 'Main Playlist',
+  },
+  {
     id: '37i9dQZF1DWZqd5JICZI0u',
     name: 'Peaceful Piano',
     tag: 'Soft & Chill',
@@ -26,7 +31,7 @@ const PRESET_PLAYLISTS = [
 ];
 
 export const SpotifyPlaylistPlaceholder: React.FC<SpotifyPlaylistPlaceholderProps> = ({
-  initialPlaylistId = '37i9dQZF1DWZqd5JICZI0u',
+  initialPlaylistId = '2UUgR8Xd23qIEWtigBUUJg',
   className = '',
   defaultExpanded = false,
 }) => {
