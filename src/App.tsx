@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cake, Sparkles, Heart, ArrowLeft, BookOpen, Clock, Tag, Lock } from 'lucide-react';
+import { Cake, Sparkles, Heart, ArrowLeft, BookOpen, Clock, Tag, Lock, Gamepad2 } from 'lucide-react';
 import { PinkConchaBlog } from './components/PinkConchaBlog';
 import { PusheenBlog } from './components/PusheenBlog';
 import { PusheenComicsBlog } from './components/PusheenComicsBlog';
@@ -10,6 +10,7 @@ import { ConnectWithMeBlog } from './components/ConnectWithMeBlog';
 import { PasswordGate } from './components/PasswordGate';
 import { BackgroundMusicPlayer } from './components/BackgroundMusicPlayer';
 import { SpotifyPlaylistPlaceholder } from './components/SpotifyPlaylistPlaceholder';
+import { DreamRunnerGame } from './components/DreamRunnerGame';
 
 interface PhotoItem {
   id: number;
@@ -82,6 +83,10 @@ export default function App() {
     } catch {
       return false;
     }
+  });
+
+  const [showGame, setShowGame] = useState<boolean>(() => {
+    return window.location.hash === '#game' || window.location.hash === '#runner';
   });
 
   const [currentView, setCurrentView] = useState<'gallery' | 'pink-macaron-blog' | 'pink-concha-blog' | 'pusheen-blog' | 'comics-blog' | 'burberry-her-blog' | 'marshmallow-blush-blog' | 'sweetest-song-blog' | 'connect-with-me-blog'>(() => {
@@ -467,6 +472,27 @@ export default function App() {
               />
               <span>Cat Cursor</span>
             </a>
+
+            <button
+              id="dream-runner-toggle-btn"
+              type="button"
+              onClick={() => {
+                setShowGame((prev) => {
+                  const next = !prev;
+                  if (next) {
+                    setTimeout(() => {
+                      document.getElementById('dream-runner-container')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 120);
+                  }
+                  return next;
+                });
+              }}
+              title="Play Dream Runner pastel mini-game"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-800 hover:text-amber-900 text-xs font-semibold border border-amber-200 shadow-2xs transition-all hover:scale-105 cursor-pointer"
+            >
+              <Gamepad2 className="w-3.5 h-3.5 text-amber-600" />
+              <span>{showGame ? 'Hide Game' : '🎮 Dream Runner'}</span>
+            </button>
           </div>
         </header>
 
@@ -579,6 +605,43 @@ export default function App() {
             );
           })}
         </section>
+
+        {/* Dream Runner Pastel Mini Game Section */}
+        {showGame ? (
+          <DreamRunnerGame onClose={() => setShowGame(false)} />
+        ) : (
+          <section
+            id="dream-runner-teaser"
+            aria-label="Dream Runner Mini Game"
+            className="w-full max-w-4xl mx-auto p-4 sm:p-5 rounded-3xl bg-white/85 backdrop-blur-md border border-pink-200 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left transition-all hover:shadow-lg hover:bg-white/95"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-pink-400 to-purple-400 text-white flex items-center justify-center shadow-xs text-xl">
+                ☁️
+              </div>
+              <div>
+                <h2 className="text-sm sm:text-base font-bold text-stone-800 flex items-center justify-center sm:justify-start gap-1.5">
+                  <span>Dream Runner Arcade</span>
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 border border-pink-200">
+                    Mini Game
+                  </span>
+                </h2>
+                <p className="text-xs text-stone-600">
+                  Chrome Dino pastel replica: leap over cotton candy clouds & shooting stars!
+                </p>
+              </div>
+            </div>
+            <button
+              id="open-game-teaser-btn"
+              type="button"
+              onClick={() => setShowGame(true)}
+              className="px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white text-xs font-bold shadow-sm transition-transform hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-1.5"
+            >
+              <Gamepad2 className="w-3.5 h-3.5" />
+              <span>Launch Game</span>
+            </button>
+          </section>
+        )}
 
         {/* Embedded Spotify Playlist Placeholder */}
         <SpotifyPlaylistPlaceholder />

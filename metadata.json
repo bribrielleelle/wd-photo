@@ -1,6 +1,6 @@
 {
   "name": "Photo Gallery",
-  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with password entry protection, a 3x3 photo grid, custom transparent cat cursor, and an ambient background music player",
+  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with password protection, 3x3 photo grid, custom transparent cat cursor, background music player, and pastel Dream Runner game",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
