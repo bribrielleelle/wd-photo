@@ -1,6 +1,6 @@
 {
   "name": "Photo Gallery",
-  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with password entry protection, a 3x3 photo grid, and a Connect With Me socials page",
+  "description": "A cotton candy themed 9-photo gallery celebrating Brielle Davis with password entry protection, a 3x3 photo grid, and a custom transparent pixel art cat cursor",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

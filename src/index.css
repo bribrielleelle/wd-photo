@@ -1,2 +1,17 @@
 @import "tailwindcss";
 
+:root,
+body {
+  cursor: url('/cursor.png') 0 0, auto;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+[role="button"],
+.cursor-pointer {
+  cursor: url('/cursor.png') 0 0, pointer;
+}
+

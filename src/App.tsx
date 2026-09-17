@@ -432,6 +432,21 @@ export default function App() {
               <Lock className="w-3.5 h-3.5 text-pink-500" />
               <span>Lock Gallery</span>
             </button>
+
+            <a
+              id="cat-cursor-badge"
+              href="/cursor-64.png"
+              download="cat-cursor.png"
+              title="Cute Cat Cursor Active (Click to download PNG)"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-800 text-xs font-semibold border border-purple-200 shadow-2xs transition-all hover:scale-105 cursor-pointer"
+            >
+              <img
+                src="/cursor-32.png"
+                alt="Cat Cursor Icon"
+                className="w-4 h-4 object-contain"
+              />
+              <span>Cat Cursor</span>
+            </a>
           </div>
         </header>
 
