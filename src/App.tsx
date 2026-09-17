@@ -8,6 +8,8 @@ import { MarshmallowBlushBlog } from './components/MarshmallowBlushBlog';
 import { SweetestSongBlog } from './components/SweetestSongBlog';
 import { ConnectWithMeBlog } from './components/ConnectWithMeBlog';
 import { PasswordGate } from './components/PasswordGate';
+import { BackgroundMusicPlayer } from './components/BackgroundMusicPlayer';
+import { SpotifyPlaylistPlaceholder } from './components/SpotifyPlaylistPlaceholder';
 
 interface PhotoItem {
   id: number;
@@ -211,44 +213,59 @@ export default function App() {
     setIsUnlocked(false);
   };
 
-  if (!isUnlocked) {
-    return <PasswordGate onUnlock={handleUnlock} />;
-  }
+  const renderCurrentView = () => {
+    if (!isUnlocked) {
+      return <PasswordGate onUnlock={handleUnlock} />;
+    }
 
-  if (currentView === 'connect-with-me-blog') {
-    return <ConnectWithMeBlog onBack={navigateToGallery} />;
-  }
+    if (currentView === 'connect-with-me-blog') {
+      return <ConnectWithMeBlog onBack={navigateToGallery} />;
+    }
 
-  if (currentView === 'sweetest-song-blog') {
-    return <SweetestSongBlog onBack={navigateToGallery} />;
-  }
+    if (currentView === 'sweetest-song-blog') {
+      return <SweetestSongBlog onBack={navigateToGallery} />;
+    }
 
-  if (currentView === 'marshmallow-blush-blog') {
-    return <MarshmallowBlushBlog onBack={navigateToGallery} />;
-  }
+    if (currentView === 'marshmallow-blush-blog') {
+      return <MarshmallowBlushBlog onBack={navigateToGallery} />;
+    }
 
-  if (currentView === 'burberry-her-blog') {
-    return <BurberryHerBlog onBack={navigateToGallery} />;
-  }
+    if (currentView === 'burberry-her-blog') {
+      return <BurberryHerBlog onBack={navigateToGallery} />;
+    }
 
-  if (currentView === 'comics-blog') {
-    return <PusheenComicsBlog onBack={navigateToGallery} />;
-  }
+    if (currentView === 'comics-blog') {
+      return <PusheenComicsBlog onBack={navigateToGallery} />;
+    }
 
-  if (currentView === 'pusheen-blog') {
-    return <PusheenBlog onBack={navigateToGallery} />;
-  }
+    if (currentView === 'pusheen-blog') {
+      return <PusheenBlog onBack={navigateToGallery} />;
+    }
 
-  if (currentView === 'pink-concha-blog') {
-    return <PinkConchaBlog onBack={navigateToGallery} />;
+    if (currentView === 'pink-concha-blog') {
+      return <PinkConchaBlog onBack={navigateToGallery} />;
+    }
+
+    return null;
+  };
+
+  const earlyView = renderCurrentView();
+  if (earlyView) {
+    return (
+      <>
+        {earlyView}
+        <BackgroundMusicPlayer />
+      </>
+    );
   }
 
   if (currentView === 'pink-macaron-blog') {
     return (
-      <main
-        id="blog-page-container"
-        className="flex min-h-screen w-full flex-col items-center bg-gradient-to-b from-purple-200 via-fuchsia-200 via-pink-200 to-pink-100 text-stone-700 p-4 sm:p-8 font-sans"
-      >
+      <>
+        <main
+          id="blog-page-container"
+          className="flex min-h-screen w-full flex-col items-center bg-gradient-to-b from-purple-200 via-fuchsia-200 via-pink-200 to-pink-100 text-stone-700 p-4 sm:p-8 font-sans"
+        >
         <div className="w-full max-w-3xl mx-auto space-y-6">
           {/* Top navigation back button */}
           <nav className="flex items-center justify-between">
@@ -376,12 +393,15 @@ export default function App() {
           </article>
         </div>
       </main>
-    );
+      <BackgroundMusicPlayer />
+    </>
+  );
   }
 
   return (
-    <main
-      id="app-container"
+    <>
+      <main
+        id="app-container"
       className="flex min-h-screen w-full flex-col items-center bg-gradient-to-b from-purple-200 via-fuchsia-200 via-pink-200 to-pink-100 text-stone-700 p-4 sm:p-8 font-sans"
     >
       <div className="w-full max-w-4xl mx-auto space-y-6">
@@ -559,7 +579,12 @@ export default function App() {
             );
           })}
         </section>
+
+        {/* Embedded Spotify Playlist Placeholder */}
+        <SpotifyPlaylistPlaceholder />
       </div>
     </main>
-  );
+    <BackgroundMusicPlayer />
+  </>
+);
 }

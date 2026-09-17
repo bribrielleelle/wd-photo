@@ -12,6 +12,7 @@ import {
   Music,
   Smile
 } from 'lucide-react';
+import { SpotifyPlaylistPlaceholder } from './SpotifyPlaylistPlaceholder';
 
 interface SweetestSongBlogProps {
   onBack: () => void;
@@ -193,6 +194,11 @@ export const SweetestSongBlog: React.FC<SweetestSongBlogProps> = ({ onBack }) =>
             <span className="text-xs text-stone-500 block">
               8 fl oz / 236 ml Fine Fragrance Mist
             </span>
+          </div>
+
+          {/* Sweetest Song Matching Playlist */}
+          <div className="text-left pt-2">
+            <SpotifyPlaylistPlaceholder initialPlaylistId="37i9dQZF1DWZqd5JICZI0u" />
           </div>
 
           {/* 6. Action Buttons with "Buy Now" */}
